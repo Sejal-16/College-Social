@@ -1,10 +1,12 @@
 import React from "react";
 import "./topbar.css";
-import { Person, Chat, Notifications } from "@material-ui/icons";
-import Profile from "../../assets/person/person1.jpg";
+// import { Person, Chat, Notifications } from "@material-ui/icons";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
 
 const Topbar = () => {
+  const { user } = useContext(AuthContext);
   return (
     <div className="topbarContainer">
       <div className="topbarLeft">
@@ -25,7 +27,7 @@ const Topbar = () => {
           <span className="topbarLink">Homepage</span>
           <span className="topbarLink">Timeline</span>
         </div>
-        <div className="topbarIcons">
+        {/* <div className="topbarIcons">
           <div className="topbarIconItem">
             <Person />
             <span className="topbarIconBadge">1</span>
@@ -38,8 +40,14 @@ const Topbar = () => {
             <Notifications />
             <span className="topbarIconBadge">3</span>
           </div>
-        </div>
-        <img src={Profile} alt="" className="topbarImg" />
+        </div> */}
+        <Link to={`/profile/${user.username}`}>
+          <img
+            src={user.profilePicture}
+            alt="profilePic"
+            className="topbarImg"
+          />
+        </Link>
       </div>
     </div>
   );
